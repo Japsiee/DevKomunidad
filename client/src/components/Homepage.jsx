@@ -7,6 +7,16 @@ import Navbar from './Navbar';
 const Homepage = (props) => {
   const history = useHistory();
   const [session, setSession] = useState(false);
+
+  const fetchLogin = async reqBody => {
+    const result = await fetch('/api/users/checklogin', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: reqBody
+    });
+    const data = await result.json();
+    return data;
+  }
   
   useEffect(() => {
     let controller = new AbortController();
@@ -27,6 +37,37 @@ const Homepage = (props) => {
             localStorage.setItem('following', following);
             localStorage.setItem('contrib', contrib);
             setSession(true);
+          } else {
+            (async () => {
+              const obj = {
+                id: localStorage.getItem('_id'),
+                username: localStorage.getItem('username')
+              }
+              const data = await fetchLogin(JSON.stringify(obj));
+
+              if (data.verified) {
+                const { _id, username, followers, following, contrib } = data.userData;
+                localStorage.setItem('_id', _id);
+                localStorage.setItem('username', username);
+                localStorage.setItem('followers', followers);
+                localStorage.setItem('following', following);
+                localStorage.setItem('contrib', contrib);
+              } else {
+                (async () => {
+                  const result = await fetch('/api/logout');
+                  const data = await result.json();
+
+                  if (data.logout) {
+                    localStorage.removeItem('_id');
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('followers');
+                    localStorage.removeItem('following');
+                    localStorage.removeItem('contrib');
+                    history.push('/');
+                  }
+                })();
+              }
+            })();
           }
         }
         controller = null;

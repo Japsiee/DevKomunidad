@@ -24,6 +24,9 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
+  bio: {
+    type: String
+  },
   askedquestions: {
     type: Array,
     default: []

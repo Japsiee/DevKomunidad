@@ -44,8 +44,8 @@ const LeftHomepage = ({ id, un, followers, following, contrib }) => {
       }
         
         <p className="d-flex justify-content-between align-items-center">
-          <a href="/" className="fw-bold fs-5 text-decoration-none">Followers</a>
-          <a href="/" className="fw-bold fs-5 text-decoration-none">Following</a>
+          <a href="/a/you" className="fw-bold fs-5 text-decoration-none">Followers</a>
+          <a href="/a/you" className="fw-bold fs-5 text-decoration-none">Following</a>
         </p>
         <p className="d-flex justify-content-around align-items-center text-secondary">
           <span className="fw-bold fs-5">{ contrib ? contrib: "" }</span>

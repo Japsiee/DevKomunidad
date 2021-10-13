@@ -27,7 +27,7 @@ const PostQuestion = ({ data }) => {
           <span className="badge bg-dark text-light position-absolute fs-6" style={{ top: "10px", left: "10px" }}>{ dat.tag }</span>
           
           {
-            dat.from === sessionStorage.getItem('username') ?
+            dat.from === localStorage.getItem('username') ?
             <button type="button" className="btn border-0 bg-transparent position-absolute fs-4" style={{ top: "5px", right: "10px" }}><i className="bi bi-gear-fill text-primary"></i></button>
             :
             ""

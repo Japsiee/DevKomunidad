@@ -41,7 +41,7 @@ const PostFoot = ({ dat }) => {
     <div className="PostFoot">
       <form onSubmit={ handleInteractions } className="d-flex justify-content-between align-items-center">
         {
-          loading || sessionStorage.getItem('username') === dat.from ?
+          loading || localStorage.getItem('username') === dat.from ?
           <button type="submit" className="btn btn-primary px-3 py-2" disabled><i className="bi bi-capslock-fill"></i> { ups }</button>
           :
           <button type="submit" className="btn btn-primary px-3 py-2"><i className="bi bi-capslock-fill"></i> { ups }</button>

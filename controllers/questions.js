@@ -1,4 +1,5 @@
 const Question = require('../models/questions');
+const User = require('../models/users');
 
 module.exports.getQuestion = (req,res) => {
   Question
@@ -62,12 +63,38 @@ module.exports.putQuestion = async (req,res) => {
     
     if (result) {
       if (updates) {
-        res.json({ up: "removed" })
+        User
+          .findOne({ username: result.from })
+          .then(data => {
+            User
+              .findByIdAndUpdate(data._id, {
+                contrib: data.contrib - 5
+              })
+              .then(result => {
+                res.json({ up: "removed" });
+              })
+              .catch(err => {
+                res.json(err);
+              })
+          })
       } else {
-        res.json({ up: "added" });
+        User
+          .findOne({ username: result.from })
+          .then(data => {
+            User
+              .findByIdAndUpdate(data._id, {
+                contrib: data.contrib + 5
+              })
+              .then(result => {
+                res.json({ up: "added" });
+              })
+              .catch(err => {
+                res.json(err);
+              })
+          })
       }
     } else {
-      throw new Error({ updated: "false 2" });
+      throw new Error({ updated: false });
     }
   } catch (e) {
     res.json({ updated: e.message });

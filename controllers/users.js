@@ -37,3 +37,18 @@ module.exports.loginUser = async (req,res)  => {
     res.json({ message: "Not logged in" });
   }
 }
+
+module.exports.loginCheck = async (req,res) => {
+  const { id, username } = req.body;
+  const data = await Users.findById(id);
+
+  if (! data) {
+    res.json({ message: "ID doesn't exist", verified: false });
+  } else {
+    if (data.username !== username) {
+      res.json({ message: "ID doesn't match the username", verified: false });
+    } else {
+      res.json({ userData: data, verified: true });
+    }
+  }
+}
