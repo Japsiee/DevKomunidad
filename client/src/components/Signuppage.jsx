@@ -32,11 +32,21 @@ const Signuppage = () => {
 
   const history = useHistory();
 
+  const [codename, setCodename] = useState("");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [notify, setNotify] = useState(false);
   const [err, setErr] = useState(null);
+
+  const getCodename = e => {
+    setCodename(e.target.value);
+  }
+
+  const getEmail = e => {
+    setEmail(e.target.value);
+  }
 
   const getUsername = e => {
     setUsername(e.target.value);
@@ -56,6 +66,8 @@ const Signuppage = () => {
     setNotify(false);
 
     const obj = {
+      codename: codename,
+      email: email,
       username: username,
       password: password
     }
@@ -68,6 +80,8 @@ const Signuppage = () => {
         const data = await fetchSignup(JSON.stringify(obj));
         if (data.created) {
           e.target.reset();
+          setCodename("");
+          setEmail("");
           setUsername("");
           setPassword("");
           setConfirmPassword("");
@@ -94,6 +108,8 @@ const Signuppage = () => {
     <div className="Signuppage">
       <h1><i className="bi bi-person-plus-fill"></i> Create Account</h1>
       <form onSubmit={ handleSignup } className="p-3 rounded" style={{ backgroundColor: "#F3F4ED" }}>
+        <input type="text" placeholder="Codename" className="form-control mb-3 fs-5" value={codename} onChange={ getCodename } autoComplete="false" />
+        <input type="text" placeholder="Email" className="form-control mb-3 fs-5" value={email} onChange={ getEmail } autoComplete="false" />
         <input type="text" placeholder="Username" className="form-control mb-3 fs-5" value={username} onChange={ getUsername } autoComplete="false" />
         <input type="password" placeholder="Password" className="form-control mb-3 fs-5" value={password} onChange={ getPassword } autoComplete="false" />
         <input type="password" placeholder="Confirm Password" className="form-control mb-3 fs-5" value={confirmPassword} onChange={ getConfirmPassword } autoComplete="false" />

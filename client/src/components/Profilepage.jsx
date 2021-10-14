@@ -18,7 +18,8 @@ const Profilepage = (props) => {
   const [expandFollowers, setExpandFollowers] = useState(false);
   const [expandFollowing, setExpandFollowing] = useState(false);
   const [id, setId] = useState(null);
-  const [username, setUsername] = useState(null);
+  const [codename, setCodename] = useState(null);
+  const [bio, setBio] = useState(null);
   const [followers, setFollowers] = useState(null);
   const [following, setFollowing] = useState(null);
   const [contrib, setContrib] = useState(null);
@@ -43,8 +44,11 @@ const Profilepage = (props) => {
           history.push('/');
         } else {
           if (localStorage.length <= 0) {
-            const { _id, username, followers, following, contrib } = props.location.data;
+            const { _id, codename, email, bio, username, followers, following, contrib } = props.location.data;
             localStorage.setItem('_id', _id);
+            localStorage.setItem('codename', codename);
+            localStorage.setItem('email', email);
+            localStorage.setItem('bio', bio);
             localStorage.setItem('username', username);
             localStorage.setItem('followers', followers);
             localStorage.setItem('following', following);
@@ -52,7 +56,8 @@ const Profilepage = (props) => {
             setSession(true);
           } else {
             setId(localStorage.getItem('_id'));
-            setUsername(localStorage.getItem('username'));
+            setCodename(localStorage.getItem('codename'));
+            setBio(localStorage.getItem('bio'));
             if (localStorage.getItem('followers') === "") {
               setFollowers(0);
             } else {
@@ -78,12 +83,12 @@ const Profilepage = (props) => {
   return(
     
     <div className="Profilepage">
-      <Navbar username={ localStorage.getItem('username') } />
+      <Navbar codename={ localStorage.getItem('codename') } />
       <div className="row m-0">
         <div className="LeftProfilepage col-12 col-md-6">
           <div className="p-3 p-md-5 m-0">
             <h1 className="display-3 fw-bold text-capitalize text-primary">
-              { ! username ? "" : username.slice(1) }
+              { ! codename ? "" : codename }
             </h1>
             <p className="lead text-secondary fw-bold">#
               { ! id ? "" : id.slice(11).toLowerCase() }
@@ -96,7 +101,7 @@ const Profilepage = (props) => {
             {/* Bio */}
             <p className="lead text-secondary fw-bold">Bio</p>
             <hr />
-            <p className="lead text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam incidunt laudantium tempora temporibus animi officiis, ducimus cupiditate autem eveniet corrupti architecto voluptas. Saepe deserunt possimus ex incidunt rem beatae. Doloremque.</p>
+            <p className="lead text-muted">{ ! bio ? "" : bio }</p>
             <hr />
             {/* Followers */}
             <div>

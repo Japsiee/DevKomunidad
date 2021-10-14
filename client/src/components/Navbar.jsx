@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Navbar = ({ username }) => {
+const Navbar = ({ codename }) => {
   const history = useHistory();
   const [isToggle, setToggle] = useState(false);
 
@@ -11,6 +11,9 @@ const Navbar = ({ username }) => {
     
     if (data.logout) {
       localStorage.removeItem('_id');
+      localStorage.removeItem('codename');
+      localStorage.removeItem('email');
+      localStorage.removeItem('bio');
       localStorage.removeItem('username');
       localStorage.removeItem('followers');
       localStorage.removeItem('following');
@@ -48,7 +51,7 @@ const Navbar = ({ username }) => {
           <a href="/a" className="display-5 fw-bold text-decoration-none text-white">DevKom</a>
         </div>
         <div className="rounded px-3 py-2 bg-white text-dark d-flex justify-content-between align-items-center position-relative" style={{ width: "150px" }}>
-          <p className="lead m-0 fw-bold text-capitalize">{ username ? username.slice(1) : "" }</p>
+          <p className="lead m-0 fw-bold text-capitalize">{ ! codename ? "" : codename }</p>
           <button className="btn btn-white rounded p-1" onClick={ handleToggle }><i className="bi bi-caret-down-fill"></i></button>
 
           <div className="position-absolute rounded bg-light text-dark px-3 py-2" style={ isToggle ? settingStyleOn : settingStyleOff }>

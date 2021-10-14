@@ -1,8 +1,11 @@
 const Users = require('../models/users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const nodemailer = require('nodemailer');
 require('dotenv').config();
+
+const EMAILSENDER = process.env.EMAIL_SENDER;
+const EMAILPASSWORD = process.env.EMAIL_PASSWORD;
 
 const createToken = id => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: 1 * 24 * 60 * 60 })
@@ -12,6 +15,36 @@ module.exports.signupUser = (req,res) => {
   Users.create(req.body)
   .then(data => {
     const token = createToken(data._id);
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+          user: EMAILSENDER,
+          pass: EMAILPASSWORD
+      }
+    });
+
+    const mailOptions = {
+      from: EMAILSENDER,
+      to: data.email,
+      subject: "DevKomunidad Message",
+      html: `
+        <h1>Hello ${data.codename}, thanks for joining on DevKomunidad.</h1>
+        <p style="font-size: 16px;">You are welcome to ask anything you want and please be respectful to everyone. If you are confused, this is your username to sign in</p>
+        <p style="font-size: 16px;">Username: ${ data.username }</p>
+        <br>
+        <br>
+        <p>This is auto generated please do not reply.</p>
+      `
+    }
+
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Email Sent");
+      }
+    })
+
     res.cookie('auth', token, { httpOnly: true, maxAge: 1 * 24 * 60 * 60 * 1000 });
     res.json({ created: true, data: data });
   })

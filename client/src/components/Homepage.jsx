@@ -30,8 +30,11 @@ const Homepage = (props) => {
           history.push('/');
         } else {
           if (localStorage.length <= 0) {
-            const { _id, username, followers, following, contrib } = props.location.data;
+            const { _id, codename, email, bio, username, followers, following, contrib } = props.location.data;
             localStorage.setItem('_id', _id);
+            localStorage.setItem('codename', codename);
+            localStorage.setItem('email', email);
+            localStorage.setItem('bio', bio);
             localStorage.setItem('username', username);
             localStorage.setItem('followers', followers);
             localStorage.setItem('following', following);
@@ -46,8 +49,11 @@ const Homepage = (props) => {
               const data = await fetchLogin(JSON.stringify(obj));
 
               if (data.verified) {
-                const { _id, username, followers, following, contrib } = data.userData;
+                const { _id, codename, email, bio, username, followers, following, contrib } = data.userData;
                 localStorage.setItem('_id', _id);
+                localStorage.setItem('codename', codename);
+                localStorage.setItem('email', email);
+                localStorage.setItem('bio', bio);
                 localStorage.setItem('username', username);
                 localStorage.setItem('followers', followers);
                 localStorage.setItem('following', following);
@@ -59,6 +65,9 @@ const Homepage = (props) => {
 
                   if (data.logout) {
                     localStorage.removeItem('_id');
+                    localStorage.removeItem('codename');
+                    localStorage.removeItem('email');
+                    localStorage.removeItem('bio');
                     localStorage.removeItem('username');
                     localStorage.removeItem('followers');
                     localStorage.removeItem('following');
@@ -82,12 +91,13 @@ const Homepage = (props) => {
   return(
     
     <div className="Homepage">
-      <Navbar username={ localStorage.getItem('username') } />
+      <Navbar codename={ localStorage.getItem('codename') } />
       <div className="row m-0 d-flex justify-content-center">
         <div className="col-3 col-md-4 col-lg-3 d-none d-md-flex d-lg-flex d-flex justify-content-center">
           <LeftHomepage
             id={localStorage.getItem('_id')}
-            un={localStorage.getItem('username')}
+            cn={localStorage.getItem('codename')}
+            bio={localStorage.getItem('bio')}
             followers={localStorage.getItem('followers')}
             following={localStorage.getItem('following')}
             contrib={localStorage.getItem('contrib')}

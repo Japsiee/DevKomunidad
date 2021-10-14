@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-const LeftHomepage = ({ id, un, followers, following, contrib }) => {
-  const [username, setUsername] = useState(null);
+const LeftHomepage = ({ id, cn, followers, following, contrib }) => {
+  const [codename, setCodename] = useState(null);
   useEffect(() => {
-    setUsername(un);
-  }, [un])
+    setCodename(cn);
+  }, [cn])
 
   let fllwrs;
   let fllwng;
@@ -12,34 +12,33 @@ const LeftHomepage = ({ id, un, followers, following, contrib }) => {
   if (! followers) {
     fllwrs = 0;
   } else {
-    fllwrs = followers.split(",");
+    fllwrs = followers.split(",").length;
   }
 
   if (! following) {
     fllwng = 0;
   } else {
-    fllwng = following.split(",");
+    fllwng = following.split(",").length;
   }
 
   return (
     <div className="LeftHomepage">
       <div className="profile bg-light py-3 px-5 rounded">
         <p className="lead fw-bold text-secondary text-capitalize">
-          { ! username ? "" : username.slice(1) + " #" + id.slice(11).toLowerCase() }
+          { ! codename ? "" : codename + " #" + id.slice(11).toLowerCase() }
         </p>
         
 
       {
-        ! followers ?  
+        ! fllwrs && ! fllwng ?  
         <p className="d-flex justify-content-around align-items-center text-secondary">
           <span className="fw-bold fs-5">0</span>
           <span className="fw-bold fs-5">0</span>
         </p>
-
         :
         <p className="d-flex justify-content-around align-items-center text-secondary">
-          <span className="fw-bold fs-5">{ fllwrs.length }</span>
-          <span className="fw-bold fs-5">{ fllwng.length }</span>
+          <span className="fw-bold fs-5">{ fllwrs }</span>
+          <span className="fw-bold fs-5">{ fllwng }</span>
         </p>
       }
         
