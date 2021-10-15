@@ -3,11 +3,11 @@ import React from 'react';
 const Landingpage = ({ leftpage, rightpage }) => {
   return(
     <div className="LandingPage">
-      <div className="row m-0">
-        <div className="col-12 col-md-6 p-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
+        <div>
           { leftpage }
         </div>
-        <div className="col-12 col-md-6 p-5">
+        <div>
           { rightpage }
         </div>
       </div>

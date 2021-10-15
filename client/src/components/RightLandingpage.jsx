@@ -50,10 +50,10 @@ const RightLandingpage = () => {
   return (
     <div className="RightLandingpage ">
     <form onSubmit={ e => handleSearch(e, search, tag) }>
-      <div className="input-group d-flex justify-content-center align-items-center">
-      <span className="bg-transparent border-0 input-group-text me-3"><i className="bi bi-search fs-2"></i></span>
-        <input type="text" placeholder="Question Title" className="w-50 border-0 border-bottom border-2 me-4 fs-4 p-2" maxLength="125" onChange={ getSearch } value={ search } />
-        <select id="tag" className="input-group-text bg-transparent border-0 fw-bold fs-5" onChange={ getTag } value={ tag } >
+      <div className="flex justify-center items-center pt-8 text-base md:text-lg lg:text-2xl">
+      <span className=""><i className="bi bi-search fs-2 text-purple-500"></i></span>
+        <input type="text" placeholder="Question Title" className="outline-none border-b-2 border-purple-500 mx-3 py-1" maxLength="125" onChange={ getSearch } value={ search } />
+        <select id="tag" className="outline-none bg-purple-500 py-1 px-4 rounded text-purple-50 cursor-pointer" onChange={ getTag } value={ tag } >
           <option value="">No Tag</option>
           <option value="React JS">React JS</option>
           <option value="Node JS">Node JS</option>
@@ -62,21 +62,21 @@ const RightLandingpage = () => {
       </div>
     </form>
 
-    <div className="pt-5" style={{ maxHeight: "500px", overflow: "auto" }}>
+    <div className="p-6 md:p-12 p-md-5" style={{ maxHeight: "700px", overflow: "auto" }}>
       {
         filter ?
           filter.map(dat => (
-            <div className="container bg-dark bg-gradient text-white d-flex flex-column justify-content-center mb-3 py-4 rounded" key={ dat._id }>
-              <h1 className="fs-4 fw-bold"><a href={`/question/${dat._id}`} className="text-decoration-none">{ wrappingTitle(dat.title) }</a></h1>
-              <p className="lead">{ wrappingQuestion(dat.question) }</p>
+            <div className="my-2 bg-purple-200 p-3 rounded" key={ dat._id }>
+              <h1 className="text-xl text-purple-900 font-semibold transition duration-200 ease-in hover:text-purple-500"><a href={`/a/question/${dat._id}`} className="">{ wrappingTitle(dat.title) }</a></h1>
+              <p className="text-base text-gray-600">{ wrappingQuestion(dat.question) }</p>
             </div>
           ))
           
         :
 
-        <div className="container d-flex flex-column justify-content-center align-items-center pt-5" style={{ overflow: "hidden" }}>
+        <div className="flex flex-col justify-center items-center" style={{ overflow: "hidden" }}>
           <img src="search.svg" alt="search" img="img-fluid" style={{ maxWidth: "300px" }} />
-          <h1 className="display-4 fw-bold text-center text-secondary pt-4">Search Results</h1>
+          <h1 className="text-purple-700 text-base font-bold py-12 md:text-xl lg:text-3xl">Search Results</h1>
         </div>
 
       }

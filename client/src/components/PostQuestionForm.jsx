@@ -62,32 +62,42 @@ const PostQuestionForm = ({ callback, username }) => {
   return(
     <div className="PostQuestionForm">
       <form name="postQuestion" onSubmit={ postQuestion } className="p-3">
-        <div className="d-flex justify-content-between">
-          <div className="d-flex">
-            <input id="title" className="border-0 border-bottom border-2 fs-4 fw-normal" type="text" placeholder="Question Title" aria-label="Question" maxLength="125" onChange={ getTitleLength } />
-            <span className="d-flex justify-content-center align-items-center p-3 fw-bold text-secondary">{ titleLength } / 125</span>
+        <div className="flex flex-col md:flex-row justify-between">
+          <div className="flex items-center">
+            <input id="title" className="text-xl outline-none shadow-sm py-2 px-3 bg-purple-50 text-gray-600" type="text" placeholder="Question Title" maxLength="125" onChange={ getTitleLength } autoCorrect="false" />
+            <span className="flex text-gray-500 ml-6">{ titleLength } / 125</span>
           </div>
-          <div className="d-flex">
-            <button type="button" className="btn btn-secondary mx-2" onClick={ getHandleType } >{ type ? "Text" : "Code" }</button>
-            <select className="form-select" id="tag" onChange={ getSelectTag } >
+          <div className="flex my-3 md:my-0">
+            <button type="button" className="bg-gray-500 text-white p-3 rounded shadow-sm" onClick={ getHandleType } >{ type ? "Text" : "Code" }</button>
+            <select className="bg-gray-500 text-white p-3 rounded shadow-sm ml-2 cursor-pointer outline-none" id="tag" onChange={ getSelectTag } >
               <option value="">Tag</option>
+              <option value="Basic">Basic</option>
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+              <option value="C#">C#</option>
+              <option value="CSS">CSS</option>
+              <option value="HTML / XML">HTML / XML</option>
               <option value="Javascript">Javascript</option>
-              <option value="React JS">React JS</option>
-              <option value="Node JS">Node JS</option>
+              <option value="Java">Java</option>
+              <option value="Perl">Perl</option>
+              <option value="PHP">PHP</option>
+              <option value="Python">Python</option>
+              <option value="Ruby">Ruby</option>
+              <option value="VBasic">VBasic</option>
             </select>
           </div>
         </div>
         <div className="question">
-          <div className="my-3">
-            <pre className="position-relative">
-              { isPosted ? 
-                <button type="submit" className="btn btn-secondary position-absolute btn-lg" style={{ bottom: "20px", right: "20px" }}>Post</button>
-                :
-                <button type="submit" className="btn btn-secondary position-absolute btn-lg" style={{ bottom: "20px", right: "20px" }} disabled >Posting ...</button>
-              }
-              <span className="position-absolute fw-bold fs-5 text-secondary px-3 py-2 bg-white" style={{ bottom: "20px", left: "20px" }}>{ questionLength } / 500</span>
-              <textarea id="question" className="form-control" onChange={ getQuestionLength } maxLength="500" placeholder="Share your thoughts ..." style={{ minHeight: "200px", fontFamily: "arial" }}></textarea>
-            </pre>
+          <div className="my-3 flex flex-col relative">
+            { isPosted ? 
+              <button type="submit" className="absolute bottom-0 right-0 text-xl py-2 px-4 bg-purple-500 rounded text-white hover:bg-purple-400">Post</button>
+              :
+              <button type="submit" className="" disabled >Posting ...</button>
+            }
+            <span className="absolute bottom-2 left-2 bg-purple-400 px-3 py-2 text-white rounded">{ questionLength } / 500</span>
+            <div className="flex">
+              <textarea id="question" className="outline-none bg-gray-100 shadow-sm rounded py-2 px-3 w-full text-gray-600 overflow-hidden" onChange={ getQuestionLength } maxLength="500" placeholder="Share your thoughts ..." style={{ minHeight: "200px", fontFamily: "arial" }} autoCorrect="false" ></textarea>
+            </div>
           </div>
         </div>
       </form>

@@ -15,27 +15,24 @@ const PostQuestion = ({ data }) => {
     <div className="PostQuestions">
     { 
       data.map(dat => (
-        <div className="PostEach p-4 my-3 position-relative rounded" style={{ backgroundColor: "#F3F4ED", wordWrap: "break-word" }} key={ dat._id }>
-          <p className="fs-3 fw-bold m-0 mt-4">{ dat.title }</p>
-          <p className="text-secondary fs-6 m-0">Asked by: <a href="/" className="fw-bold text-primary text-decoration-none">{ dat.from }</a></p>
-          <p className="lead fs-6 m-0 text-muted">
-            { dat.createdAt[0] + dat.createdAt[1] + dat.createdAt[2] + dat.createdAt[3] + " " + dat.createdAt }
-          </p>
-
-          <hr />
-
-          <span className="badge bg-dark text-light position-absolute fs-6" style={{ top: "10px", left: "10px" }}>{ dat.tag }</span>
-          
+        <div className="PostEach bg-purple-100 text-gray-600 py-2 px-3 m-3 rounded shadow-sm relative" key={ dat._id }>
           {
             dat.from === localStorage.getItem('username') ?
-            <button type="button" className="btn border-0 bg-transparent position-absolute fs-4" style={{ top: "5px", right: "10px" }}><i className="bi bi-gear-fill text-primary"></i></button>
+            <button type="button" className="font-semibold text-purple-500 text-xl my-3"><i className="bi bi-gear-fill text-primary"></i></button>
             :
             ""
           }
+          <p className="text-xl font-semibold text-gray-700">{ dat.title }</p>
+          <p className="text-lg">Asked by: <a href="/" className="text-purple-700 hover:text-purple-500">{ dat.from }</a></p>
+          <span className="absolute top-2 right-5 font-semibold text-purple-500">{ dat.tag }</span>
+
+          <p className="absolute top-7 right-5 font-semibold text-purple-500">
+            { dat.createdAt[5] + dat.createdAt[6] + "/" + dat.createdAt[8] + dat.createdAt[9] + "/" +dat.createdAt[0] + dat.createdAt[1] + dat.createdAt[2] + dat.createdAt[3] }
+          </p>
 
           { 
             getQuestion(dat.question) ? 
-              <p className="lead text-dark mt-3 fw-normal fs-5">{ dat.question.slice(0,250) }<button type="button" className="border-0 bg-transparent text-primary fw-bold" onClick={ e => setUnfold(e, dat.question) } >&nbsp; . . . </button></p>
+              <p className="text-base text-gray-500 my-4">{ dat.question.slice(0,250) }<button type="button" className="font-bold" onClick={ e => setUnfold(e, dat.question) } >&nbsp; . . . </button></p>
             :
               <p className="lead text-dark mt-3 fw-normal fs-5">{ dat.question }</p>
           }

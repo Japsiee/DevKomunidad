@@ -92,8 +92,8 @@ const Homepage = (props) => {
     
     <div className="Homepage">
       <Navbar codename={ localStorage.getItem('codename') } />
-      <div className="row m-0 d-flex justify-content-center">
-        <div className="col-3 col-md-4 col-lg-3 d-none d-md-flex d-lg-flex d-flex justify-content-center">
+      <div className="grid grid-rows-1 grid-flow-col gap-3">
+        <div className="col-span-1 hidden md:flex">
           <LeftHomepage
             id={localStorage.getItem('_id')}
             cn={localStorage.getItem('codename')}
@@ -103,11 +103,11 @@ const Homepage = (props) => {
             contrib={localStorage.getItem('contrib')}
           />
         </div>
-        <div className="col-12 col-md-8 col-lg-6">
+        <div className="col-auto">
           <MiddleHomepage username={ localStorage.getItem('username') } />
         </div>
-        <div className="col-3 d-none d-lg-flex">
-          
+        <div className="col-span-3">
+          <p></p>
         </div>
       </div>
     </div>

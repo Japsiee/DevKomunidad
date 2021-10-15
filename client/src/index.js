@@ -20,6 +20,9 @@ ReactDOM.render(
         </Route>
         <Route exact path="/a" component={ Homepage } />
         <Route exact path="/a/you" component={ Profilepage } />
+        <Route exact path="/a/question/:id">
+          <h1>Questions</h1>
+        </Route>
         <Route path="/login">
           <Landingpage leftpage={<LeftLandingpage />} rightpage={<Loginpage />} />
         </Route>

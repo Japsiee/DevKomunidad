@@ -38,15 +38,15 @@ const PostFoot = ({ dat }) => {
   }
 
   return(
-    <div className="PostFoot">
-      <form onSubmit={ handleInteractions } className="d-flex justify-content-between align-items-center">
+    <div className="PostFoot bg-purple-500 text-white text-xl">
+      <form onSubmit={ handleInteractions } className="flex justify-center items-center">
         {
           loading || localStorage.getItem('username') === dat.from ?
-          <button type="submit" className="btn btn-primary px-3 py-2" disabled><i className="bi bi-capslock-fill"></i> { ups }</button>
+          <button type="submit" className="text-gray-100" disabled><i className="bi bi-capslock-fill"></i> { ups }</button>
           :
-          <button type="submit" className="btn btn-primary px-3 py-2"><i className="bi bi-capslock-fill"></i> { ups }</button>
+          <button type="submit" className="hover:text-purple-300"><i className="bi bi-capslock-fill"></i> { ups }</button>
         }
-        <a href="/" className="text-decoration-none text-primary fs-6 fw-bold text-uppercase">View in details&nbsp;&nbsp;<i className="bi bi-layers-fill fs-5"></i></a>
+        <a href="/" className="mx-5 hover:text-purple-300">View in details</a>
         <span className="bg-transparent rounded px-3 py-2"><i className="bi bi-chat-square-text-fill"></i> { dat.comments.length }</span>
       </form>
     </div>

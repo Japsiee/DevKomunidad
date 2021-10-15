@@ -28,7 +28,7 @@ const Navbar = ({ codename }) => {
 
   const settingStyleOn = {
     width: "150px",
-    top: "40px",
+    top: "50px",
     right: 0,
     opacity: 1,
     visibility: "visible",
@@ -46,17 +46,23 @@ const Navbar = ({ codename }) => {
 
   return (
     <div className="Navbar mb-3">
-      <div className="jumbotron d-flex justify-content-between align-items-center bg-dark text-white px-3 py-3 position-relative">
+      <div className="flex justify-between items-center bg-purple-500 py-3 px-3 md:px-5">
         <div>
-          <a href="/a" className="display-5 fw-bold text-decoration-none text-white">DevKom</a>
+          <a href="/a" className="text-xl md:text-3xl font-bold text-white transition duration-200 ease-in hover:text-purple-700">DevKom</a>
         </div>
-        <div className="rounded px-3 py-2 bg-white text-dark d-flex justify-content-between align-items-center position-relative" style={{ width: "150px" }}>
-          <p className="lead m-0 fw-bold text-capitalize">{ ! codename ? "" : codename }</p>
-          <button className="btn btn-white rounded p-1" onClick={ handleToggle }><i className="bi bi-caret-down-fill"></i></button>
+        <div className="flex justify-between items-center bg-purple-600 text-white relative px-3 py-2 rounded shadow-xl" style={{ width: "150px" }}>
+          <p className="font-semibold uppercase">{ ! codename ? "" : codename }</p>
+          <button className="border-2 rounded-full py-1 px-2 hover:bg-purple-400" onClick={ handleToggle }>
+            { isToggle ?
+              <i className="bi bi-caret-up-fill"></i>
+            :  
+              <i className="bi bi-caret-down-fill"></i>
+            }
+          </button>
 
-          <div className="position-absolute rounded bg-light text-dark px-3 py-2" style={ isToggle ? settingStyleOn : settingStyleOff }>
-            <a href="/a/you" className="btn border-0 fw-bold text-decoration-none text-start d-block my-2">Profile</a>
-            <button type="button" className="btn border-0 fw-bold my-2" onClick={ handleLogout } >Logout</button>
+          <div className="absolute flex flex-col" style={ isToggle ? settingStyleOn : settingStyleOff }>
+            <a href="/a/you" className="bg-gray-400 text-white py-2 px-3 rounded mb-1 transition duration-200 ease-in hover:bg-purple-400 shadow-md">Profile</a>
+            <button type="button" className="text-left bg-gray-400 text-white py-2 px-3 rounded transition duration-200 ease-in hover:bg-purple-400 shadow-md" onClick={ handleLogout } >Logout</button>
           </div>
         </div>
       </div>

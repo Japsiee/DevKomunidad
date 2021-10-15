@@ -105,21 +105,30 @@ const Signuppage = () => {
   }
 
   return (
-    <div className="Signuppage">
-      <h1><i className="bi bi-person-plus-fill"></i> Create Account</h1>
-      <form onSubmit={ handleSignup } className="p-3 rounded" style={{ backgroundColor: "#F3F4ED" }}>
-        <input type="text" placeholder="Codename" className="form-control mb-3 fs-5" value={codename} onChange={ getCodename } autoComplete="false" />
-        <input type="text" placeholder="Email" className="form-control mb-3 fs-5" value={email} onChange={ getEmail } autoComplete="false" />
-        <input type="text" placeholder="Username" className="form-control mb-3 fs-5" value={username} onChange={ getUsername } autoComplete="false" />
-        <input type="password" placeholder="Password" className="form-control mb-3 fs-5" value={password} onChange={ getPassword } autoComplete="false" />
-        <input type="password" placeholder="Confirm Password" className="form-control mb-3 fs-5" value={confirmPassword} onChange={ getConfirmPassword } autoComplete="false" />
-        <button type="submit" className="btn btn-dark btn-lg">Create Account <i className="bi bi-arrow-right"></i></button>
+    <div className="Signuppage p-6 md:p-12 p-md-5">
+      <h1 className="mb-3 text-lg sm:text-2xl lg:text-4xl text-purple-700 font-bold"><i className="bi bi-person-plus-fill"></i> Create Account</h1>
+      <form onSubmit={ handleSignup } className="p-3 text-lg">
+        <div className="flex flex-col">
+          <input type="text" placeholder="Name" className="outline-none border-b-2 border-purple-200 py-2" value={codename} onChange={ getCodename } autoComplete="false" />
+          <input type="text" placeholder="Email" className="outline-none border-b-2 border-purple-200 py-2" value={email} onChange={ getEmail } autoComplete="false" />
+          <input type="text" placeholder="Username" className="outline-none border-b-2 border-purple-200 py-2" value={username} onChange={ getUsername } autoComplete="false" />
+          <input type="password" placeholder="Password" className="outline-none border-b-2 border-purple-200 py-2" value={password} onChange={ getPassword } autoComplete="false" />
+          <input type="password" placeholder="Confirm Password" className="outline-none border-b-2 border-purple-200 py-2" value={confirmPassword} onChange={ getConfirmPassword } autoComplete="false" />
+          <div>
+            <button type="submit" className="text-left bg-purple-500 py-2 px-3 pr-8 mt-2 text-purple-50 font-bold rounded transition duration-200 ease-in hover:bg-purple-400">Create Account <i className="bi bi-arrow-right"></i></button>
+          </div>
+        </div>
       </form>
 
-      <div className="d-flex flex-column justify-content-center align-items-center">
-        <img src="create.svg" alt="create" className="img-fluid mt-5 pt-5" style={{ width: "250px" }} />
-        <p className="lead fw-bold text-center text-danger mt-5">{ err ? err.message : "" }</p>
-        <h1 className="display-5 text-success text-center mt-3 fw-bold pt-3">{ notify ? "User Created !" : "" }</h1>
+      <div className="flex flex-col justify-center items-center overflow-hidden relative max-h-96 mt-12">
+        {
+          err ? 
+            <p className="text-md bg-red-500 rounded p-2 text-red-50 font-bold mt-3 absolute left-10 bottom-10">{ err ? err.message : "" }</p>
+          :
+          ""
+        }
+        <p className="text-md text-green-700 font-bold mt-3 absolute left-10 bottom-10">{ notify ? "User Created !" : "" }</p>
+        <img src="create.svg" alt="create" className="my-4 px-5" />   
       </div>
       
 
