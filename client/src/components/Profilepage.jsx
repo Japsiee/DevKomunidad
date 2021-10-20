@@ -84,73 +84,78 @@ const Profilepage = (props) => {
     
     <div className="Profilepage">
       <Navbar codename={ localStorage.getItem('codename') } />
-      <div className="row m-0">
-        <div className="LeftProfilepage col-12 col-md-6">
-          <div className="p-3 p-md-5 m-0">
-            <h1 className="display-3 fw-bold text-capitalize text-primary">
+      <div className="grid grid-cols-1 md:grid-cols-2 px-3">
+        <div className="LeftProfilepage">
+          <div className="bg-gray-50 rounded shadow-sm p-3">
+            <h1 className="text-4xl font-semibold text-purple-500">
               { ! codename ? "" : codename }
             </h1>
-            <p className="lead text-secondary fw-bold">#
+            <p className="text-lg font-semibold text-purple-500">#
               { ! id ? "" : id.slice(11).toLowerCase() }
             </p>
             <br />
-            <p className="lead text-light fw-bold bg-primary bg-gradient py-2 px-0 rounded d-flex justify-content-between">
+            {/* Bio */}
+            <p className="text-lg font-bold text-gray-500 flex justify-between mb-2"><span>Bio</span><button type="button" className="text-purple-500 font-semibold hover:text-purple-400">Edit</button></p>
+            <div className="bg-white shadow-sm p-3 mb-2">
+              <p className="text-gray-500">{ 
+                ! bio ? 
+                <span className="block text-center text-xl font-bold text-gray-200">Bio unavailalbe</span> 
+                : bio }
+              </p>
+            </div>
+
+            <p className="text-lg font-bold text-gray-500 flex justify-between mb-2">
               <span>Contribution Pts.</span>
               <span>+ { ! contrib ? "" : contrib }</span>
             </p>
-            {/* Bio */}
-            <p className="lead text-secondary fw-bold">Bio</p>
-            <hr />
-            <p className="lead text-muted">{ ! bio ? "" : bio }</p>
-            <hr />
             {/* Followers */}
             <div>
-              <p className="lead text-secondary fw-bold d-flex justify-content-between align-items-center">
-                <span>Followers&nbsp;&nbsp;<span className="badge bg-primary rounded">{! followers ? "" : followers.length }</span></span>
+              <p className="text-lg font-bold text-gray-500 flex justify-between mb-2">
+                <span>Followers&nbsp;&nbsp;<span className="text-base px-1 py-0 bg-purple-500 text-white rounded">{! followers ? "0" : followers.length }</span></span>
                 {
                   expandFollowers ?
-                  <button type="button" className="btn border-0 bg-transparent fs-3" onClick={ toggleFollowers }>
+                  <button type="button" className="text-purple-500 text-2xl" onClick={ toggleFollowers }>
                     <i className="bi bi-door-open-fill"></i>
                   </button>
                   :
-                  <button type="button" className="btn border-0 bg-transparent fs-3" onClick={ toggleFollowers }>
+                  <button type="button" className="text-purple-500 text-2xl" onClick={ toggleFollowers }>
                     <i className="bi bi-door-closed"></i>
                   </button>
                 }
               </p>
             </div>
-            <hr />
             <div className="followers" style={ expandFollowers ? expand : contract }>
               { ! followers || followers === 0 ?
-                <p className="display-6 text-muted fw-normal text-center">No Followers</p>
+                <p className="text-center font-semibold text-gray-300 text-lg">Followers unavailable</p>
                 : followers.map((fllwrs, index) => (
-                <p className="lead text-primary fw-normal mb-0" key={index}>{ fllwrs }</p>
+                <p className="mb-2" key={index}>
+                  <a href="/" className="text-base text-purple-500 text-decoration-none">{ fllwrs }</a>
+                </p>
               )) }
             </div>
-            <hr />
             {/* Following */}
-            <p className="lead text-secondary fw-bold d-flex justify-content-between align-items-center">
-              <span>Following&nbsp;&nbsp;<span className="badge bg-primary rounded">{ ! following ? "" : following.length }</span></span>
+            <p className="text-lg font-bold text-gray-500 flex justify-between mb-2">
+              <span>Following&nbsp;&nbsp;<span className="text-base px-1 py-0 bg-purple-500 text-white rounded">{ ! following ? "0" : following.length }</span></span>
               {
                 expandFollowing ?
-                <button type="button" className="btn border-0 bg-transparent fs-3" onClick={ toggleFollowing }>
+                <button type="button" className="text-purple-500 text-2xl" onClick={ toggleFollowing }>
                   <i className="bi bi-door-open-fill"></i>
                 </button>
                 :
-                <button type="button" className="btn border-0 bg-transparent fs-3" onClick={ toggleFollowing }>
+                <button type="button" className="text-purple-500 text-2xl" onClick={ toggleFollowing }>
                   <i className="bi bi-door-closed"></i>
                 </button>
               }
             </p>
-            <hr />
             <div className="following" style={ expandFollowing ? expand : contract }>
               { ! following || following === 0 ?
-                <p className="display-6 text-muted fw-normal text-center">No Following</p>
+                <p className="text-center font-semibold text-gray-300 text-lg">Following unavailable</p>
                 : following.map((fllwng, index) => (
-                <p className="lead text-primary fw-normal mb-0" key={index}>{ fllwng }</p>
+                  <p className="mb-2" key={index}>
+                  <a href="/" className="text-base text-purple-500 text-decoration-none">{ fllwng }</a>
+                </p>
               )) }
             </div>
-            <hr />
           </div>
         </div>
         <div className="RightProfilepage col-12 col-md-6">

@@ -47,6 +47,8 @@ const PostQuestionForm = ({ callback, username }) => {
     .then(data => {
       setIsPosted(true);
       setTitle("");
+      setTitleLength(0);
+      setQuestionLength(0);
       setTag("");
       setQuestion("");
       e.target.reset();
@@ -64,7 +66,7 @@ const PostQuestionForm = ({ callback, username }) => {
       <form name="postQuestion" onSubmit={ postQuestion } className="p-3">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="flex items-center">
-            <input id="title" className="text-xl outline-none shadow-sm py-2 px-3 bg-purple-50 text-gray-600" type="text" placeholder="Question Title" maxLength="125" onChange={ getTitleLength } autoCorrect="false" />
+            <input id="title" className="text-xl outline-none shadow-sm py-2 px-3 bg-gray-50 text-gray-700" type="text" placeholder="Question Title" maxLength="125" onChange={ getTitleLength } autoCorrect="false" />
             <span className="flex text-gray-500 ml-6">{ titleLength } / 125</span>
           </div>
           <div className="flex my-3 md:my-0">
@@ -96,7 +98,7 @@ const PostQuestionForm = ({ callback, username }) => {
             }
             <span className="absolute bottom-2 left-2 bg-purple-400 px-3 py-2 text-white rounded">{ questionLength } / 500</span>
             <div className="flex">
-              <textarea id="question" className="outline-none bg-gray-100 shadow-sm rounded py-2 px-3 w-full text-gray-600 overflow-hidden" onChange={ getQuestionLength } maxLength="500" placeholder="Share your thoughts ..." style={{ minHeight: "200px", fontFamily: "arial" }} autoCorrect="false" ></textarea>
+              <textarea id="question" className="outline-none bg-gray-50 shadow-sm rounded py-2 px-3 w-full text-gray-600 overflow-hidden" onChange={ getQuestionLength } maxLength="500" placeholder="Share your thoughts ..." style={{ minHeight: "200px", fontFamily: "arial" }} autoCorrect="false" ></textarea>
             </div>
           </div>
         </div>

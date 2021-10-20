@@ -23,7 +23,7 @@ const LeftHomepage = ({ id, cn, followers, following, contrib }) => {
 
   return (
     <div className="LeftHomepage" style={{ maxWidth: "250px" }}>
-      <div className="bg-purple-100 p-6 ml-3 rounded shadow-md">
+      <div className="bg-gray-50 p-6 ml-3 rounded shadow-sm">
         <p className="font-semibold text-xl text-gray-600">
           { ! codename ? "" : codename + " #" + id.slice(11).toLowerCase() }
         </p>
@@ -55,7 +55,7 @@ const LeftHomepage = ({ id, cn, followers, following, contrib }) => {
         </div>
       </div>
 
-      <div className="bg-purple-500 p-6 ml-3 rounded mt-4 shadow-md">
+      <div className="bg-purple-500 p-6 ml-3 rounded mt-4 shadow-sm">
         <h1 className="text-white font-bold text-xl">Acknowledgment to top 10 donators</h1>
         <div className="text-gray-300 text-lg py-3">
           <p className="">1. <a href="/who/id" className="hover:text-white">@admin</a></p>
@@ -71,7 +71,7 @@ const LeftHomepage = ({ id, cn, followers, following, contrib }) => {
         </div>
       </div>
 
-      <div className="bg-purple-100 p-6 ml-3 rounded mt-4 shadow-md">
+      <div className="bg-gray-50 p-6 ml-3 rounded mt-4 shadow-sm">
         <h1 className="text-purple-500 text-xl">Top 5 Contributors</h1>
         <div className="text-gray-600 text-lg py-3">
           <p className="">1. <a href="/who/id" className="hover:text-purple-500">@admin</a></p>
