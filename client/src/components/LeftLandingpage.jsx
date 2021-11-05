@@ -11,7 +11,7 @@ const LeftLandingpage = () => {
           <p className="text-6xl font-bold text-gray-900">Komunidad</p>
         </div>
         <p className="text-xl text-justify text-gray-700">Devs komunidad is exclusive only for aspiring developers / already developers to help each other grow via exchanging their thoughts and ideas. This community was built and inspired by these inspirational qoutes - "Surround yourself by experienced programmers" and "There's something you know that I don't know and there's something I know that you don't".</p>
-        <div className="mt-5 text-purple-500 font-bold">
+        <div className="mt-5 text-purple-500 font-bold text-xl">
           <a href="/privacy-policy" className="mr-4">Privacy Policy</a>
           <a href="/terms-and-condition" className="mr-4">Terms &amp; Condition</a>
           <a href="/guide" className="mr-4">How to use</a>

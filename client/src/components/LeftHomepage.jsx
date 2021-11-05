@@ -31,10 +31,16 @@ const LeftHomepage = ({ id, cn, followers, following, contrib }) => {
 
       {
         ! fllwrs && ! fllwng ?  
-        <p className="">
-          <span className="">0</span>
-          <span className="">0</span>
-        </p>
+        <div className="my-4">
+          <p className="flex justify-around font-semibold text-purple-700">
+            <span className="">0</span>
+            <span className="">0</span>
+          </p>
+          <div className="flex justify-around font-bold">
+            <a href="/a/you" className="text-lg text-purple-400 hover:text-purple-500">Folowers</a>
+            <a href="/a/you" className="text-lg text-purple-400 hover:text-purple-500">Following</a>
+          </div>
+        </div>
         :
         <div className="py-4">
           <div className="flex justify-around font-semibold text-purple-700">

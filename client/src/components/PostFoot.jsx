@@ -8,7 +8,7 @@ const PostFoot = ({ dat }) => {
     setLoading(true);
     e.preventDefault();
 
-    const upBy = sessionStorage.getItem('username');
+    const upBy = localStorage.getItem('username');
     const toQuestion = dat._id;
 
     const reqObj = {
