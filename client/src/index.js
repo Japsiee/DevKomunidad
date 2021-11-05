@@ -8,7 +8,7 @@ import Signuppage from './components/Signuppage';
 import LeftLandingpage from './components/LeftLandingpage';
 import RightLandingpage from './components/RightLandingpage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './index.css';
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
